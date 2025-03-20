@@ -56,7 +56,7 @@ export default function Account() {
                         <Text bgColor={"purple.900"}>
                             Seu saldo: {(userData?.balance)?.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}
                         </Text>
-                        <Text bgColor={"purple.900"} marginBottom={3}>
+                        <Text bgColor={"purple.900"} marginBottom={5}>
                             {actualDate.toLocaleString()}
                         </Text>
                         <Button

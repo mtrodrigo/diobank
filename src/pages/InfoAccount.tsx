@@ -1,4 +1,4 @@
-import { Box, Spinner, Text } from "@chakra-ui/react"
+import { Box, Button, Spinner, Text } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserDataProps } from "./Home"
@@ -17,6 +17,10 @@ export default function InfoAcoount() {
 
         getData()
     }, [])
+
+    const returnAccount = () => {
+        navigate('/account/1')
+    }
 
     return (
         <Box
@@ -38,9 +42,14 @@ export default function InfoAcoount() {
                     <Text bg={'transparent'} fontSize={"xl"}>
                         Informações do usuário: {userData?.name}
                     </Text>
-                    <Text bg={'transparent'}>
+                    <Text bg={'transparent'} marginBottom={7}>
                         E-mail: {userData?.email}
                     </Text>
+                    <Button
+                        onClick={() => returnAccount()}
+                    >
+                        Retornar
+                    </Button>
                 </>
             )}
 
