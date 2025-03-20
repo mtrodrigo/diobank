@@ -3,6 +3,7 @@ import { login } from '../services/login';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../components/AppContext/AppContext';
+import { changeLocalStorage } from '../services/storage';
 
 export interface UserDataProps {
     name: string,
@@ -26,9 +27,10 @@ export default function Home() {
         }
 
         setIsLoggedIn(true)
+        changeLocalStorage({ login: true })
         navigate('/account/1')
     }
-
+    
     return (
         <Box
             maxW='sm'

@@ -10,17 +10,15 @@ export default function Account() {
     const [userData, setUserdata] = useState<UserDataProps>()
     const { id } = useParams()
     const navigate = useNavigate()
-
     const { isLoggedIn } = useContext(AppContext)
+    const actualDate = new Date()
 
     !isLoggedIn && navigate('/')
-    
+
     if (id !== userData?.id) {
         navigate('/')
     }
-    
-    const actualDate = new Date()
-    
+
     useEffect(() => {
         const getData = async () => {
             const data = await api as UserDataProps
