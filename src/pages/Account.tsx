@@ -1,4 +1,4 @@
-import { Box, Spinner, Text } from "@chakra-ui/react"
+import { Box, Button, Spinner, Text } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import { api } from "../api"
 import { UserDataProps } from "../pages/Home"
@@ -28,6 +28,10 @@ export default function Account() {
         getData()
     }, [])
 
+    const infoAccount = () => {
+        navigate('/infoaccount')
+    }
+
     return (
         <Box
             minW='sm'
@@ -52,9 +56,14 @@ export default function Account() {
                         <Text bgColor={"purple.900"}>
                             Seu saldo: {(userData?.balance)?.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}
                         </Text>
-                        <Text bgColor={"purple.900"}>
+                        <Text bgColor={"purple.900"} marginBottom={3}>
                             {actualDate.toLocaleString()}
                         </Text>
+                        <Button
+                            onClick={() => infoAccount()}
+                        >
+                            Detalhes
+                        </Button>
                     </>
                 )}
 

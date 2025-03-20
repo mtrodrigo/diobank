@@ -1,4 +1,4 @@
-import { Text, Box, Button, color } from '@chakra-ui/react'
+import { Text, Box, Button } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { AppContext } from '../AppContext/AppContext'
 import { useNavigate } from 'react-router-dom'

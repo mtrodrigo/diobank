@@ -15,15 +15,17 @@ export interface UserDataProps {
 
 export default function Home() {
     const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [loggeInIs, setLoggeInIS] = useState<boolean>(true)
     const navigate = useNavigate()
     const { setIsLoggedIn } = useContext(AppContext)
 
-    const validadeUser = async (email: string) => {
-        const loggeIn = await login(email)
+    const validadeUser = async (email: string, password: string) => {
+        const loggeIn = await login(email, password)
 
         if (!loggeIn) {
-            alert('E-mail inváilido')
-            return
+            setLoggeInIS(false)
+           return
         }
 
         setIsLoggedIn(true)
@@ -45,6 +47,16 @@ export default function Home() {
             bg='purple.900'
             boxShadow='dark-lg'
         >
+            {!loggeInIs && 
+                <Text 
+                    fontSize={'sm'} 
+                    bgColor={'red.600'} 
+                    paddingInline={3} 
+                    borderRadius={"xl"}
+                >
+                    E-mail ou Senha incorreto!
+                </Text>
+            }
             <Text fontSize='2xl' bg='purple.900' paddingBottom='3'>Faça o login</Text>
             <Input
                 placeholder='E-mail'
@@ -55,14 +67,14 @@ export default function Home() {
             <Input
                 placeholder='Senha'
                 type='password'
-
-
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
             />
             <Button
                 colorScheme='whiteAlpha'
                 variant='outline'
                 marginTop='4'
-                onClick={() => validadeUser(email)}
+                onClick={() => validadeUser(email, password)}
             >
                 Entrar
             </Button>
