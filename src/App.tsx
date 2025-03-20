@@ -1,46 +1,25 @@
+import { AppContextProvider } from './components/AppContext/AppContext';
 import { Layout } from './Layout/Layout';
-import {
-  ChakraProvider,
-  Box,
-  Input,
-  Button,
-  Text
-} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter } from 'react-router-dom';
+import { MainRoutes } from './routes';
+import { createLocalStorage } from './services/storage';
+
 
 function App() {
+
+  createLocalStorage()
+
   return (
-    <div>
-      <ChakraProvider>
-        <Layout>
-          <Box
-            maxW='sm'
-            border='1px'
-            display='flex'
-            flexDir='column'
-            alignItems='center'
-            justifyContent='center'
-            gap='3'
-            p='10'
-            borderRadius='2xl'
-            bg='purple.900'
-            boxShadow='dark-lg'
-          >
-            <Text fontSize='2xl' bg='purple.900' paddingBottom='3'>Faça o login</Text>
-            <Input
-              placeholder='E-mail'
-              type='email'
-            />
-            <Input
-              placeholder='Senha'
-              type='password'
-            />
-            <Button colorScheme='whiteAlpha' variant='outline' marginTop='4'>
-              Entrar
-            </Button>
-          </Box>
-        </Layout>
-      </ChakraProvider>
-    </div>
+    <BrowserRouter>
+      <AppContextProvider>
+        <ChakraProvider>
+          <Layout>
+            <MainRoutes />
+          </Layout>
+        </ChakraProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   );
 }
 
